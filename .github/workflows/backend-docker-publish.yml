@@ -16,7 +16,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME:  ${{ github.repository }}-backend
+  IMAGE_NAME:  chess-backend
 
 
 jobs:
@@ -90,8 +90,8 @@ jobs:
           context: ./backend
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-                ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.repository }}-backend:${{ env.TAG }}
-                ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.repository }}-backend:latest
+                ${{ env.REGISTRY }}/${{ env.OWNER }}/chess-backend:${{ env.TAG }}
+                ${{ env.REGISTRY }}/${{ env.OWNER }}/chess-backend:latest
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -106,7 +106,7 @@ jobs:
         env:
           REGISTRY: ${{ env.REGISTRY }}
           OWNER: ${{ env.OWNER }}
-          IMAGE: ${{ github.repository }}-backend
+          IMAGE: chess-backend
           TAG: ${{ env.TAG }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: |
