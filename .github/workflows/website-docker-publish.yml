@@ -106,7 +106,7 @@ jobs:
         env:
           REGISTRY: ${{ env.REGISTRY }}
           OWNER: ${{ env.OWNER }}
-          IMAGE: ${{ github.event.repository.name }}-website
+          IMAGE: ${{ github.repository }}-website
           TAG: ${{ env.TAG }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: |
