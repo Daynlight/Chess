@@ -90,8 +90,8 @@ jobs:
           context: ./website
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-                ${{ env.REGISTRY }}/${{ env.OWNER }}/chess-website:${{ env.TAG }}
-                ${{ env.REGISTRY }}/${{ env.OWNER }}/chess-website:latest
+                ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.repository }}-website:${{ env.TAG }}
+                ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.repository }}-website:latest
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
