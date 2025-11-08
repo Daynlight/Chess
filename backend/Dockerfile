@@ -19,9 +19,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     node -v && npm -v
 
 # =========================
-# Install React and Nest CLI globally
+# Install Nest CLI globally
 # =========================
-RUN npm install -g create-react-app @nestjs/cli concurrently
+RUN npm install -g @nestjs/cli
 
 # =========================
 # Working directory
@@ -34,32 +34,16 @@ WORKDIR /docker
 COPY . .
 
 # =========================
-# Build React frontend
-# =========================
-WORKDIR /docker/website
-RUN npm install && npm run build
-
-# =========================
 # Build NestJS backend
 # =========================
-WORKDIR /docker/backend
 RUN npm install && npm run build
 
 # =========================
 # Expose ports (as needed)
 # =========================
 EXPOSE 80
-EXPOSE 8080
 
 # =========================
-# Default CMD
+# Run Service
 # =========================
-CMD ["/bin/bash"]
-
-# =========================
-# Run Services
-# =========================
-WORKDIR /docker
-CMD bash -c "concurrently \
-  \"npm run dev --prefix ./website\" \
-  \"npm run start:prod --prefix ./backend\""
+CMD bash -c "npm run start:prod ."
