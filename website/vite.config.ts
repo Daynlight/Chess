@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     port: 80,
     host: true,
-    strictPort: true
+    strictPort: true,
+    allowedHosts: ['chess.daynlight.pl']
   }
 })
